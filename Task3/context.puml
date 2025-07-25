@@ -1,0 +1,33 @@
+@startuml
+!include ../c4/C4_Context.puml
+
+
+Person(client, "Клиент", "Клиент")
+Person(owner, "Собственник", "Клиент")
+Person(manager, "Менеджер", "Работает с клиентами и объектами недвижимости, администрирует онлайн-сделки")
+Person(accountant, "Бухгалтер", "Ведет финансовый учет")
+Person(analyst, "Бизнес-аналитик", "Оптимизирует процессы и развивает прикладные бизнес-системы. Администрирует системы")
+Person(bi, "Аналитик BI", "Анализирует данные и готовит отчётность")
+
+System_Boundary(prop, "PropDevelopment") {
+    System(it_system, "IT-система PropDevelopment", "Обеспечивает покупку, управление и обслуживание недвижимости")
+}
+
+System_Ext(gov, "Государственные органы", "Отвечают за регистрационные действия с объектами недвижимости")
+System_Ext(housing_api, "Поставщики ресурсов ЖКХ")
+System_Ext(payment_sys, "Платежная система", "Обрабатывает онлайн-платежи")
+System_Ext(smart_home_partner, "Партнёр Умный дом", "Управление домофонами и шлагбаумами")
+
+Rel(client, it_system, "")
+Rel(owner, it_system, "")
+Rel(manager, it_system, "")
+Rel(accountant, it_system, "")
+Rel(analyst, it_system, "")
+Rel(bi, it_system, "")
+Rel(it_system, smart_home_partner, "Интеграция с интеллектуальным домофоном и шлагбаумом")
+
+Rel(it_system, housing_api, "")
+Rel(it_system, gov, "")
+Rel(it_system, payment_sys, "")
+
+@enduml
